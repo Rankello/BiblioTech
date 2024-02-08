@@ -1,1 +1,53 @@
-<p>utilisateur works!</p>
+<!-- Formulaire de création d'utilisateur -->
+<form (ngSubmit)="createUser()">
+    <label>Prénom:</label>
+    <input type="text" [(ngModel)]="nouvelUtilisateur.firstname" name="firstname" required>
+    
+    <label>Nom:</label>
+    <input type="text" [(ngModel)]="nouvelUtilisateur.lastname" name="lastname" required>
+  
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="nouvelUtilisateur.email" name="email" required>
+  
+    <label>Mot de passe:</label>
+    <input type="password" [(ngModel)]="nouvelUtilisateur.password" name="password" required>
+  
+    <label>Rôle:</label>
+    <select [(ngModel)]="nouvelUtilisateur.role" name="role">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+    
+    <button type="submit">Créer</button>
+  </form>
+  
+  <!-- Formulaire de mise à jour d'utilisateur -->
+  <form (ngSubmit)="updateUser()">
+    <label>Prénom:</label>
+    <input type="text" [(ngModel)]="utilisateurToUpdate.firstname" name="firstname" required>
+    
+    <label>Nom:</label>
+    <input type="text" [(ngModel)]="utilisateurToUpdate.lastname" name="lastname" required>
+  
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="utilisateurToUpdate.email" name="email" required>
+  
+    <label>Mot de passe:</label>
+    <input type="password" [(ngModel)]="utilisateurToUpdate.password" name="password" required>
+  
+    <label>Rôle:</label>
+    <select [(ngModel)]="utilisateurToUpdate.role" name="role">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+  
+    <button type="submit">Mettre à jour</button>
+  </form>
+  
+  <!-- Liste des utilisateurs avec option de suppression -->
+  <ul>
+    <li *ngFor="let utilisateur of utilisateurs">
+      {{ utilisateur.firstname }} {{ utilisateur.lastname }} ({{ utilisateur.email }}) - {{ utilisateur.role }}
+      <button (click)="deleteUser(utilisateur.id)">Supprimer</button>
+    </li>
+  </ul>

@@ -1,1 +1,43 @@
-<p>page works!</p>
+<!-- Formulaire de création de page -->
+<form (ngSubmit)="createPage()">
+    <label>Titre:</label>
+    <input type="text" [(ngModel)]="nouvellePage.title" name="title" required>
+    
+    <label>Contenu:</label>
+    <textarea [(ngModel)]="nouvellePage.content" name="content" required></textarea>
+  
+    <label>Livre ID:</label>
+    <input type="number" [(ngModel)]="nouvellePage.livreId" name="livreId" required>
+    
+    <button type="submit">Créer</button>
+  </form>
+  
+  <!-- Formulaire de mise à jour de page -->
+  <form (ngSubmit)="updatePage()">
+    <label>Titre:</label>
+    <input type="text" [(ngModel)]="pageToUpdate.title" name="title" required>
+    
+    <label>Contenu:</label>
+    <textarea [(ngModel)]="pageToUpdate.content" name="content" required></textarea>
+  
+    <label>Livre ID:</label>
+    <input type="number" [(ngModel)]="pageToUpdate.livreId" name="livreId" required>
+  
+    <!-- Champ non modifiable pour createdAt -->
+    <label>Date de création:</label>
+    <input type="text" [(ngModel)]="pageToUpdate.createdAt" name="createdAt" readonly>
+    
+    <!-- Champ non modifiable pour updatedAt -->
+    <label>Date de modification:</label>
+    <input type="text" [(ngModel)]="pageToUpdate.updatedAt" name="updatedAt" readonly>
+    
+    <button type="submit">Mettre à jour</button>
+  </form>
+  
+  <!-- Liste des pages avec option de suppression -->
+  <ul>
+    <li *ngFor="let page of pages">
+      {{ page.title }}
+      <button (click)="deletePage(page.id)">Supprimer</button>
+    </li>
+  </ul>

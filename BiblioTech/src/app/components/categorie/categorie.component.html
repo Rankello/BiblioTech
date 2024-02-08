@@ -1,1 +1,23 @@
-<p>categorie works!</p>
+<!-- Formulaire de création de catégorie -->
+<form (ngSubmit)="createCategorie()">
+    <label>Nom:</label>
+    <input type="text" [(ngModel)]="nouvelleCategorie.label" name="label" required>
+    
+    <button type="submit">Créer</button>
+  </form>
+  
+  <!-- Formulaire de mise à jour de catégorie -->
+  <form (ngSubmit)="updateCategorie()">
+    <label>Nom:</label>
+    <input type="text" [(ngModel)]="categorieToUpdate.label" name="label" required>
+    
+    <button type="submit">Mettre à jour</button>
+  </form>
+  
+  <!-- Liste des catégories avec option de suppression -->
+  <ul>
+    <li *ngFor="let categorie of categories">
+      {{ categorie.label }}
+      <button (click)="deleteCategorie(categorie.id)">Supprimer</button>
+    </li>
+  </ul>
