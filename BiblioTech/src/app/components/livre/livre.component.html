@@ -1,0 +1,32 @@
+<!-- livre.component.html -->
+<form (ngSubmit)="createLivre()">
+    <label>Titre:</label>
+    <input type="text" [(ngModel)]="nouveauLivre.titre" name="titre" required>
+    
+    <label>Auteur:</label>
+    <input type="text" [(ngModel)]="nouveauLivre.auteur" name="auteur" required>
+    
+    <label>resume:</label>
+    <textarea [(ngModel)]="nouveauLivre.resume" name="resume" required></textarea>
+    
+    <!-- Autres champs selon les besoins -->
+    
+    <button type="submit">Créer</button>
+  </form>
+  
+  <div *ngFor="let livre of livres">
+    <h2>{{ livre.titre }}</h2>
+    <p>{{ livre.auteur }}</p>
+    <!-- Autres champs du livre à afficher -->
+  
+    <!-- Formulaire de mise à jour -->
+    <form (ngSubmit)="updateLivre(livre)">
+      <input type="text" [(ngModel)]="livre.titre" name="titre">
+      <input type="text" [(ngModel)]="livre.auteur" name="auteur">
+      <!-- Autres champs du formulaire de mise à jour -->
+      <button type="submit">Mettre à jour</button>
+    </form>
+  
+    <!-- Option de suppression -->
+    <button (click)="deleteLivre(livre.id)">Supprimer</button>
+  </div>
