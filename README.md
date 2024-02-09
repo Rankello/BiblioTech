@@ -7,7 +7,7 @@ identifiants admin:
 email : admin@example.com
 password : admin123
 
-identifiants admin:
+identifiants user:
 
 email : john@example.com
 password : pasword123
