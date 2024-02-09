@@ -1,6 +1,11 @@
 <!-- livre.component.html -->
 <button (click)="adminMode()">Admin mode</button>
 
+<div *ngIf="isPushAdmin">
+  <button [routerLink]="['/categories']">Categories</button>
+  <button [routerLink]="['/utilisateurs']">Utilisateurs</button>
+</div>
+
 <form (ngSubmit)="createLivre()">
     <label>Titre:</label>
     <input type="text" [(ngModel)]="nouveauLivre.titre" name="titre" required>
