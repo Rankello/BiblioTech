@@ -14,13 +14,15 @@ export class AuthentificationComponent {
   constructor(private router: Router, private authService: AuthentificationService) {}
 
   login(): void {
-    const utilisateur = this.authService.login(this.email, this.password);
-    if (utilisateur) {
-      // Authentification réussie, rediriger vers une page d'accueil
-      this.router.navigate(['/accueil']);
-    } else {
-      // Afficher un message d'erreur ou gérer l'authentification échouée
-      console.log('Authentification échouée');
-    }
+    this.authService.login(this.email, this.password).subscribe(utilisateur => {
+      console.log(utilisateur)
+      if (utilisateur) {
+        // Authentification réussie, rediriger vers une page d'accueil
+        this.router.navigate(['/livres']);
+      } else {
+        // Afficher un message d'erreur ou gérer l'authentification échouée
+        console.log('Authentification échouée');
+      }
+    });
   }
 }

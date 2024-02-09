@@ -29,9 +29,8 @@ export class UtilisateurComponent implements OnInit {
     });
   }
 
-  updateUser(): void {
-    this.utilisateurService.updateUser(this.utilisateurToUpdate).subscribe(() => {
-      this.utilisateurToUpdate = { id: 0, firstname: '', lastname: '', email: '', password: '', role: 'user' };
+  updateUser(user: Utilisateur): void {
+    this.utilisateurService.updateUser(user).subscribe(() => {
       this.getUtilisateurs(); // Actualiser la liste des utilisateurs après la mise à jour
     });
   }

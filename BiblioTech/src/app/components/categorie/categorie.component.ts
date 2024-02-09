@@ -29,9 +29,8 @@ export class CategorieComponent implements OnInit {
     });
   }
 
-  updateCategorie(): void {
-    this.categorieService.updateCategorie(this.categorieToUpdate).subscribe(() => {
-      this.categorieToUpdate = { id: 0, label: '' };
+  updateCategorie(categorie: Categorie): void {
+    this.categorieService.updateCategorie(categorie).subscribe(() => {
       this.getCategories(); // Actualiser la liste des catégories après la mise à jour
     });
   }

@@ -1,4 +1,6 @@
 <!-- livre.component.html -->
+<button (click)="adminMode()">Admin mode</button>
+
 <form (ngSubmit)="createLivre()">
     <label>Titre:</label>
     <input type="text" [(ngModel)]="nouveauLivre.titre" name="titre" required>
@@ -14,12 +16,15 @@
     <button type="submit">Créer</button>
   </form>
   
-  <div *ngFor="let livre of livres">
+  <div *ngFor="let livre of livres" class="livres">
+    <div class="livre" [routerLink]="['/pages']">
     <h2>{{ livre.titre }}</h2>
     <p>{{ livre.auteur }}</p>
     <!-- Autres champs du livre à afficher -->
+    </div>
   
     <!-- Formulaire de mise à jour -->
+    <div *ngIf="isPushAdmin">
     <form (ngSubmit)="updateLivre(livre)">
       <input type="text" [(ngModel)]="livre.titre" name="titre">
       <input type="text" [(ngModel)]="livre.auteur" name="auteur">
@@ -29,4 +34,5 @@
   
     <!-- Option de suppression -->
     <button (click)="deleteLivre(livre.id)">Supprimer</button>
+    </div>
   </div>

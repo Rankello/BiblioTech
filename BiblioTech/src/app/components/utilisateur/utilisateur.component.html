@@ -19,35 +19,20 @@
     </select>
     
     <button type="submit">Créer</button>
-  </form>
+</form>
   
-  <!-- Formulaire de mise à jour d'utilisateur -->
-  <form (ngSubmit)="updateUser()">
-    <label>Prénom:</label>
-    <input type="text" [(ngModel)]="utilisateurToUpdate.firstname" name="firstname" required>
-    
-    <label>Nom:</label>
-    <input type="text" [(ngModel)]="utilisateurToUpdate.lastname" name="lastname" required>
-  
-    <label>Email:</label>
-    <input type="email" [(ngModel)]="utilisateurToUpdate.email" name="email" required>
-  
-    <label>Mot de passe:</label>
-    <input type="password" [(ngModel)]="utilisateurToUpdate.password" name="password" required>
-  
-    <label>Rôle:</label>
-    <select [(ngModel)]="utilisateurToUpdate.role" name="role">
-      <option value="user">User</option>
-      <option value="admin">Admin</option>
-    </select>
-  
-    <button type="submit">Mettre à jour</button>
-  </form>
-  
-  <!-- Liste des utilisateurs avec option de suppression -->
-  <ul>
+<!-- Liste des utilisateurs avec option de suppression -->
+<ul>
     <li *ngFor="let utilisateur of utilisateurs">
-      {{ utilisateur.firstname }} {{ utilisateur.lastname }} ({{ utilisateur.email }}) - {{ utilisateur.role }}
-      <button (click)="deleteUser(utilisateur.id)">Supprimer</button>
+        {{ utilisateur.firstname }} {{ utilisateur.lastname }} ({{ utilisateur.email }}) - {{ utilisateur.role }}
+        <button (click)="deleteUser(utilisateur.id)">Supprimer</button>
+        <form (ngSubmit)="updateUser(utilisateur)">
+            <input type="text" [(ngModel)]="utilisateur.firstname" name="firstname" required>
+            <input type="text" [(ngModel)]="utilisateur.lastname" name="lastname" required>
+            <input type="email" [(ngModel)]="utilisateur.email" name="email" required>
+            <input type="password" [(ngModel)]="utilisateur.password" name="password" required>
+            <!-- Autres champs du formulaire de mise à jour -->
+            <button type="submit">Mettre à jour</button>
+          </form>
     </li>
-  </ul>
+</ul>

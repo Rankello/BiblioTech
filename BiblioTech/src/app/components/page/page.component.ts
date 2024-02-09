@@ -10,7 +10,7 @@ import { PageService } from '../../services/page/page.service';
 export class PageComponent implements OnInit {
   pages: Page[] = [];
   nouvellePage: Page = { id: 0, title: '', content: '', livreId: 0, createdAt: new Date(), updatedAt: new Date() };
-  pageToUpdate: Page = { id: 0, title: '', content: '', livreId: 0, createdAt: new Date(), updatedAt: new Date() };
+  isPushedAdmin: boolean = false;
 
   constructor(private pageService: PageService) {}
 
@@ -29,9 +29,8 @@ export class PageComponent implements OnInit {
     });
   }
 
-  updatePage(): void {
-    this.pageService.updatePage(this.pageToUpdate).subscribe(() => {
-      this.pageToUpdate = { id: 0, title: '', content: '', livreId: 0, createdAt: new Date(), updatedAt: new Date() };
+  updatePage(page: Page): void {
+    this.pageService.updatePage(page).subscribe(() => {
       this.getPages(); // Actualiser la liste des pages après la mise à jour
     });
   }
@@ -40,5 +39,9 @@ export class PageComponent implements OnInit {
     this.pageService.deletePage(pageId).subscribe(() => {
       this.getPages(); // Actualiser la liste des pages après la suppression
     });
+  }
+
+  adminMode(): void {
+    this.isPushedAdmin = !this.isPushedAdmin;
   }
 }

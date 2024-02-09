@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Livre } from '../../shared/models/livre.model';
 import { LivreService } from '../../services/livre/livre.service';
+import { AuthentificationService } from '../../services/authentification/authentification.service';
 
 @Component({
   selector: 'app-livre',
@@ -9,10 +10,11 @@ import { LivreService } from '../../services/livre/livre.service';
 })
 export class LivreComponent implements OnInit {
   livres: Livre[] = [];
+  isPushAdmin: boolean = false;
 
   nouveauLivre: Livre = { id: 0, titre: '', auteur: '', resume: '', createdAt: new Date(), updatedAt: new Date(), categories: [] };
 
-  constructor(private livreService: LivreService) {}
+  constructor(private livreService: LivreService, private authService: AuthentificationService) {}
 
   ngOnInit(): void {
     this.getLivres();
@@ -38,5 +40,11 @@ export class LivreComponent implements OnInit {
       // Réinitialiser le formulaire ou effectuer d'autres actions après la création réussie du livre
       this.nouveauLivre = { id: 0, titre: '', auteur: '', resume: '', createdAt: new Date(), updatedAt: new Date(), categories: [] };
     });
+  }
+
+  adminMode(): void {
+    if(this.authService.isAdmin()){
+    this.isPushAdmin = !this.isPushAdmin;
+    }
   }
 }
